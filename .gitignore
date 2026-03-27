@@ -7,6 +7,7 @@
 *
 !*/
 !.gitignore
+!*.png
 ###########################################################################
 ##	VIVADO
 #Source files:
@@ -62,5 +63,3 @@
 !*.elf
 !*.bmm
 !*.xmp
-
-# End of https://www.toptal.com/developers/gitignore/api/vivado
