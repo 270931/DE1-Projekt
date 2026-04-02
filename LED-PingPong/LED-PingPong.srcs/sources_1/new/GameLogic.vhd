@@ -87,8 +87,8 @@ begin
                     -- Remain in this state until manual reset.
                     
                     when others =>
-                    -- If something unexpected happens, go to idle state.
-                        game_state <= START;
+                    -- If something unexpected happens, go to 'IDLE' state.
+                        game_state <= IDLE;
                 end case;
             
             
