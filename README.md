@@ -4,7 +4,7 @@ This project is part of the BPC-DE1 course at the Faculty of Electrical Engineer
 
 ### Team:
 - Frank Patrik - Programming and overall program structure
-- Hromek Matěj - 
+- Hromek Matěj - Modul časování 
 - Križan Damián - 
 - Toman Jan -
 
