@@ -35,6 +35,6 @@ The game instance uses the GameLogic component. GameLogic is a finite state mach
 - END_OF_ROUND – Round ends, check if someone missed
 - END_OF_GAME – Player reached winning score, wait for reset
 
-### Weekly status report
-#Week 1
--  
+### Weekly status report:
+- WEEK 1: 
+
