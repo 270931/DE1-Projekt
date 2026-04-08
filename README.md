@@ -12,7 +12,7 @@ This project is part of the BPC-DE1 course at the Faculty of Electrical Engineer
 ### Inputs:
 - `btnl`: button for the left player to strike the ball,
 - `btnr`: button for the right player to strike the ball,
-- `btnc`: button for reseting the game/programe.
+- `btnc`: button for reseting the game/program.
 ### Outputs:
 - `7-segment display`: segmented display to show the score of player and to start or announce the winner,
 - `led1-16`: leds making up the playing field,
