@@ -70,10 +70,11 @@ begin
                     -- In this state, decide on the direction of the ball movement (somehow), and also display the
                     --  word 'PLAY' on the the centre 4 7-segments.
                     -- After that, advace to 'PLAYING' state
-                    -- after start, the TIMER is activated and generates a TICK at a certain frequency. A counter tracks successful hits, and after a defined number of hits, the tick frequency increases
+                    
                     
                     when PLAYING =>
                     -- In this state, advance the ball according to slowed clock signal in the decided direction
+                    -- the TIMER is activated and generates a TICK at a certain frequency. A counter tracks successful hits, and after a defined number of hits, the tick frequency increases
                     -- When ball is in the player teritory (for the left player LED15 is on, for right LED0 is on)
                     --  check for the 'player_X' signal within time of one ball advancement.
                     -- If succesful, reverse the direction of ball, flash 'led16_b' and repeate.
