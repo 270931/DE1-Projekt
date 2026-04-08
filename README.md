@@ -28,3 +28,9 @@ The game instance uses the GameLogic component. GameLogic is a finite state mach
     END_OF_GAME  --> IDLE : rst ='1'
 
 ```
+### States:
+- IDLE – Waiting for the game to start
+- START – Initialize round, wait for timer
+- PLAYING – Active gameplay
+- END_OF_ROUND – Round ends, check if someone missed
+- END_OF_GAME – Player reached winning score, wait for reset
