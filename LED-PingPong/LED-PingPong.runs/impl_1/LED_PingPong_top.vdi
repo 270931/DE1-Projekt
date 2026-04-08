@@ -1,0 +1,88 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Wed Apr  8 19:27:26 2026
+# Process ID         : 12388
+# Current directory  : C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/impl_1
+# Command line       : vivado.exe -log LED_PingPong_top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source LED_PingPong_top.tcl -notrace
+# Log file           : C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/impl_1/LED_PingPong_top.vdi
+# Journal file       : C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/impl_1\vivado.jou
+# Running On         : DESKTOP-1IMBN29
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz
+# CPU Frequency      : 1190 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 16850 MB
+# Swap memory        : 2550 MB
+# Total Virtual      : 19400 MB
+# Available Virtual  : 12252 MB
+#-----------------------------------------------------------
+source LED_PingPong_top.tcl -notrace
+create_project: Time (s): cpu = 00:00:31 ; elapsed = 00:00:19 . Memory (MB): peak = 560.043 ; gain = 255.098
+Command: link_design -top LED_PingPong_top -part xc7a50ticsg324-1L
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7a50ticsg324-1L
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 766.398 ; gain = 0.000
+INFO: [Project 1-479] Netlist was created with Vivado 2025.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc]
+WARNING: [Vivado 12-584] No ports matched 'CLK100MHZ'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:7]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:7]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CLK100MHZ'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:8]
+CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_ports CLK100MHZ]'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:8]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+WARNING: [Vivado 12-584] No ports matched 'CA'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:36]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:36]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CB'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:37]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:37]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CC'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:38]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:38]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CD'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:39]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:39]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CE'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:40]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:40]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CF'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:41]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:41]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CG'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:42]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:42]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'DP'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:43]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:43]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CPU_RESETN'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:54]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:54]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 882.762 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+5 Infos, 11 Warnings, 11 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 886.766 ; gain = 326.723
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a50ti'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a50ti'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 907.008 ; gain = 20.242
+
+Starting Cache Timing Information Task

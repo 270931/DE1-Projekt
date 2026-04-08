@@ -21,6 +21,17 @@ end GameLogic;
 architecture Behavioral of GameLogic is 
 
     -- some clock enable will be needed in order to slow down the ball
+    component clk_en is
+        generic ( G_MAX : positive :=5);  -- Default number of clock cycles
+        Port ( clk : in STD_LOGIC;
+               rst : in STD_LOGIC;
+               ce  : out STD_LOGIC);
+    end component;
+    
+    component bin2seg is
+        Port ( bin : in STD_LOGIC_VECTOR (4 downto 0);
+               seg : out STD_LOGIC_VECTOR (6 downto 0));
+    end component;
 
     -- to change the winnig score, modify this value
     constant WIN_SCORE : integer := 10;
@@ -31,12 +42,31 @@ architecture Behavioral of GameLogic is
     signal player_R_score : integer range 0 to WIN_SCORE;
     signal player_L_score : integer range 0 to WIN_SCORE;
     signal ball_position  : STD_LOGIC_VECTOR(15 downto 0);
+    signal display_text   : STD_LOGIC;
+    signal display_char   : STD_LOGIC_VECTOR(4 downto 0);
     
     -- possible states of the game
     type state_type is (IDLE, START, PLAYING, END_OF_ROUND, END_OF_GAME);
     signal game_state : state_type;
 
 begin
+
+    -- The amount of time that any text should be displayed
+    clock0 : clk_en
+        generic map ( G_MAX => 400_000_000 )    -- 4 seconds should be enough
+        port map (
+            clk => clk,
+            rst => rst,
+            ce  => display_text
+        );
+    
+    -- Instance of the 'bin2seg' component to draw text
+    display0 : bin2seg
+        port map (
+            bin => display_char,
+            seg => seg
+           );
+        
     
     game: process(clk)
     begin
@@ -71,6 +101,26 @@ begin
                     --  word 'PLAY' on the the centre 4 7-segments.
                     -- After that, advace to 'PLAYING' state
                     -- Kdyz hra zacne, spusti se TIMER, ten generuje TICK o nejake f, counter bude pocitat uspesne odpaly, po X odpalech se tick zrychly a zvetsi obtiznost hry.
+                        
+                        if (display_text = '1') then
+                            -- Letter "P"
+                            anode <= b"1101_1111";
+                            display_char <= b"1_0001";
+                            -- Letter "L"
+                            anode <= b"1110_1111";
+                            display_char <= b"1_0010";
+                            -- Letter "A"
+                            anode <= b"1111_0111";
+                            display_char <= b"1_0011";
+                            -- Letter "Y"
+                            anode <= b"1111_1011";
+                            display_char <= b"1_0100";
+                            
+                         else
+                         
+                            game_state <= PLAYING;
+                         end if;
+                    
                     
                     when PLAYING =>
                     -- In this state, advance the ball according to slowed clock signal in the decided direction

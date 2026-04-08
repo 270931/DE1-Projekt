@@ -4,7 +4,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity bin2seg is
     Port ( bin : in STD_LOGIC_VECTOR (4 downto 0);
-           seg : out STD_LOGIC_VECTOR (7 downto 0));
+           seg : out STD_LOGIC_VECTOR (6 downto 0));
 end bin2seg;
 
 architecture Behavioral of bin2seg is
@@ -51,13 +51,13 @@ begin
             when b"1_0001" =>
                 seg <= b"001_1000";
             -- "L"
-            when b"1_0001" =>
+            when b"1_0010" =>
                 seg <= b"111_0001";
             -- "A"
-            when b"1_0001" =>
+            when b"1_0011" =>
                 seg <= b"000_1000";
             -- "Y"
-            when b"1_0001" =>
+            when b"1_0100" =>
                 seg <= b"101_1000";
                 
             when others =>

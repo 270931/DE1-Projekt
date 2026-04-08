@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Wed Apr  8 19:26:02 2026
+# Process ID         : 4444
+# Current directory  : C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/synth_1
+# Command line       : vivado.exe -log LED_PingPong_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source LED_PingPong_top.tcl
+# Log file           : C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/synth_1/LED_PingPong_top.vds
+# Journal file       : C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/synth_1\vivado.jou
+# Running On         : DESKTOP-1IMBN29
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz
+# CPU Frequency      : 1190 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 16850 MB
+# Swap memory        : 2550 MB
+# Total Virtual      : 19400 MB
+# Available Virtual  : 12274 MB
+#-----------------------------------------------------------
+source LED_PingPong_top.tcl -notrace

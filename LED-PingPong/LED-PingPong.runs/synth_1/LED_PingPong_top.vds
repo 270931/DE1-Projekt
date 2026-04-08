@@ -1,0 +1,340 @@
+#-----------------------------------------------------------
+# Vivado v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Wed Apr  8 19:26:02 2026
+# Process ID         : 4444
+# Current directory  : C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/synth_1
+# Command line       : vivado.exe -log LED_PingPong_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source LED_PingPong_top.tcl
+# Log file           : C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/synth_1/LED_PingPong_top.vds
+# Journal file       : C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/synth_1\vivado.jou
+# Running On         : DESKTOP-1IMBN29
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 19045
+# Processor Detail   : Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz
+# CPU Frequency      : 1190 MHz
+# CPU Physical cores : 4
+# CPU Logical cores  : 8
+# Host memory        : 16850 MB
+# Swap memory        : 2550 MB
+# Total Virtual      : 19400 MB
+# Available Virtual  : 12274 MB
+#-----------------------------------------------------------
+source LED_PingPong_top.tcl -notrace
+create_project: Time (s): cpu = 00:00:12 ; elapsed = 00:00:08 . Memory (MB): peak = 560.793 ; gain = 256.867
+Command: synth_design -top LED_PingPong_top -part xc7a50ticsg324-1L
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a50ti'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a50ti'
+INFO: [Device 21-403] Loading part xc7a50ticsg324-1L
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 12740
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1292.156 ; gain = 541.773
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'LED_PingPong_top' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/LED-PingPong_top.vhd:28]
+INFO: [Synth 8-3491] module 'debounce' declared at 'C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/debounce.vhd:6' bound to instance 'debounceL' of component 'debounce' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/LED-PingPong_top.vhd:67]
+INFO: [Synth 8-638] synthesizing module 'debounce' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/debounce.vhd:14]
+	Parameter G_MAX bound to: 200000 - type: integer 
+INFO: [Synth 8-3491] module 'clk_en' declared at 'C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/clk_en.vhd:5' bound to instance 'clock_0' of component 'clk_en' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/debounce.vhd:49]
+INFO: [Synth 8-638] synthesizing module 'clk_en' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/clk_en.vhd:12]
+	Parameter G_MAX bound to: 200000 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'clk_en' (0#1) [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/clk_en.vhd:12]
+INFO: [Synth 8-256] done synthesizing module 'debounce' (0#1) [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/debounce.vhd:14]
+INFO: [Synth 8-3491] module 'debounce' declared at 'C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/debounce.vhd:6' bound to instance 'debounceR' of component 'debounce' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/LED-PingPong_top.vhd:77]
+INFO: [Synth 8-3491] module 'GameLogic' declared at 'C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:5' bound to instance 'game' of component 'GameLogic' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/LED-PingPong_top.vhd:87]
+INFO: [Synth 8-638] synthesizing module 'GameLogic' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:21]
+	Parameter G_MAX bound to: 400000000 - type: integer 
+INFO: [Synth 8-3491] module 'clk_en' declared at 'C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/clk_en.vhd:5' bound to instance 'clock0' of component 'clk_en' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:55]
+INFO: [Synth 8-638] synthesizing module 'clk_en__parameterized1' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/clk_en.vhd:12]
+	Parameter G_MAX bound to: 400000000 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'clk_en__parameterized1' (0#1) [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/clk_en.vhd:12]
+INFO: [Synth 8-3491] module 'bin2seg' declared at 'C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:5' bound to instance 'display0' of component 'bin2seg' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:64]
+INFO: [Synth 8-638] synthesizing module 'bin2seg' [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:10]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:19]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:22]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:25]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:28]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:31]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:34]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:37]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:40]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:43]
+WARNING: [Synth 8-6044] Case expression and choice expression width mismatch, Case expression is 5 wide and choice expression is 4 wide [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:46]
+INFO: [Synth 8-256] done synthesizing module 'bin2seg' (0#1) [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd:10]
+INFO: [Synth 8-256] done synthesizing module 'GameLogic' (0#1) [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:21]
+INFO: [Synth 8-256] done synthesizing module 'LED_PingPong_top' (0#1) [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/LED-PingPong_top.vhd:28]
+WARNING: [Synth 8-6014] Unused sequential element player_L_score_reg was removed.  [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:78]
+WARNING: [Synth 8-6014] Unused sequential element player_R_score_reg was removed.  [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:79]
+WARNING: [Synth 8-6014] Unused sequential element ball_position_reg was removed.  [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:80]
+WARNING: [Synth 8-6014] Unused sequential element signal_seg_reg was removed.  [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:82]
+WARNING: [Synth 8-3848] Net led in module/entity GameLogic does not have driver. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:15]
+WARNING: [Synth 8-3848] Net led16_b in module/entity GameLogic does not have driver. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:16]
+WARNING: [Synth 8-3848] Net dp in module/entity GameLogic does not have driver. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd:18]
+WARNING: [Synth 8-7129] Port led[15] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[14] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[13] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[12] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[11] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[10] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[9] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[8] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[7] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[6] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[5] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[4] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[3] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[2] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[1] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[0] in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led16_b in module GameLogic is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dp in module GameLogic is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1408.941 ; gain = 658.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1408.941 ; gain = 658.559
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1408.941 ; gain = 658.559
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1408.941 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc]
+WARNING: [Vivado 12-584] No ports matched 'CLK100MHZ'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:7]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:7]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CLK100MHZ'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:8]
+CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_ports CLK100MHZ]'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:8]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+WARNING: [Vivado 12-584] No ports matched 'CA'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:36]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:36]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CB'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:37]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:37]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CC'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:38]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:38]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CD'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:39]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:39]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CE'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:40]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:40]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CF'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:41]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:41]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CG'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:42]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:42]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'DP'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:43]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:43]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'CPU_RESETN'. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:54]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc:54]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/LED_PingPong_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/LED_PingPong_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1483.473 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1483.473 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1483.473 ; gain = 733.090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a50ticsg324-1L
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1483.473 ; gain = 733.090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1483.473 ; gain = 733.090
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'game_state_reg' in module 'GameLogic'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                              001 |                              000
+                   start |                              010 |                              001
+                 playing |                              100 |                              010
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'game_state_reg' using encoding 'one-hot' in module 'GameLogic'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1483.473 ; gain = 733.090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                4 Bit    Registers := 2     
+	                1 Bit    Registers := 11    
++---Muxes : 
+	   3 Input    1 Bit        Muxes := 4     
+	   2 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 120 (col length:60)
+BRAMs: 150 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7129] Port led[15] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[14] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[13] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[12] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[11] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[10] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[9] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[8] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[7] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[6] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[5] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[4] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[3] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[2] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[1] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led[0] in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port led16_b in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dp in module LED_PingPong_top is either unconnected or has no load
+WARNING: [Synth 8-3332] Sequential element (game/FSM_onehot_game_state_reg[2]) is unused and will be removed from module LED_PingPong_top.
+WARNING: [Synth 8-3332] Sequential element (game/FSM_onehot_game_state_reg[1]) is unused and will be removed from module LED_PingPong_top.
+WARNING: [Synth 8-3332] Sequential element (game/FSM_onehot_game_state_reg[0]) is unused and will be removed from module LED_PingPong_top.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1483.473 ; gain = 733.090
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1591.574 ; gain = 841.191
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1591.574 ; gain = 841.191
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1601.109 ; gain = 850.727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1851.836 ; gain = 1101.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1851.836 ; gain = 1101.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1851.836 ; gain = 1101.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1851.836 ; gain = 1101.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1851.836 ; gain = 1101.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1851.836 ; gain = 1101.453
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+------+------+
+|      |Cell  |Count |
++------+------+------+
+|1     |OBUF  |    15|
+|2     |OBUFT |    18|
++------+------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1851.836 ; gain = 1101.453
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 21 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:34 . Memory (MB): peak = 1851.836 ; gain = 1026.922
+Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:37 . Memory (MB): peak = 1851.836 ; gain = 1101.453
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1861.098 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1864.742 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 34fa689f
+INFO: [Common 17-83] Releasing license: Synthesis
+33 Infos, 67 Warnings, 11 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 1864.742 ; gain = 1303.949
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1864.742 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.runs/synth_1/LED_PingPong_top.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file LED_PingPong_top_utilization_synth.rpt -pb LED_PingPong_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Apr  8 19:26:59 2026...
