@@ -1,6 +1,6 @@
 # LED Ping-Pong
 
-This project is part of the BPC-DE1 course at the Faculty of Electrical Engineering and Communication Technologies. It implements a simple LED Ping-Pong game on an FPGA board. Players control left and right paddles using buttons, and the game keeps track of scores. The goal is to reach the defined winning score first.
+Tento projekt je součástí kurzu BPC-DE1 na Fakultě elektrotechniky a komunikačních technologií. Implementuje jednoduchou hru LED Ping-Pong na desce FPGA. Hráči ovládají levou a pravou pálku pomocí tlačítek a hra sleduje skóre. Cílem je jako první dosáhnout stanoveného vítězného počtu bodů.
 
 ### Team:
 - Frank Patrik - Programming and overall program structure
