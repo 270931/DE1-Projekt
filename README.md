@@ -1,22 +1,22 @@
 # LED-kový Ping-Pong
 
-Toto je projekt do předmětu BPC-DE1 na fakultě elektrotechniky a komunikačních technologií.
+This is a project for the BPC-DE1 course at the Faculty of Electrical Engineering and Communication Technologies.
 
 ### Na projektu spolupracovali:
-- Frank Patrik - programování a struktura programu
-- Hromek Matěj
-- Križan Damián
-- Toman Jan
+- Frank Patrik - Programming and overall program structure
+- Hromek Matěj - 
+- Križan Damián - 
+- Toman Jan -
 
 > [!NOTE]
 > Dále to může dodělat někdo jiný (a lépe)
 
 ## Struktura programu
-Toto je struktura souboru `LED_PingPong_top.vhd`:
+The top-level VHDL file is `LED_PingPong_top.vhd`:
 
-![Schema](img/Schéma.png)
+![Scheme](img/Schéma.png)
 
-Struktura instance **game** komponenty *GameLogic*. *GameLogic* je stavový automat s 5 stavy:
+The game instance **game** komponenty *GameLogic*. *GameLogic* is a finite state machine (FSM) with 5 states:
 ```mermaid
   stateDiagram-v2
     [*] --> IDLE
