@@ -70,7 +70,7 @@ begin
                     -- In this state, decide on the direction of the ball movement (somehow), and also display the
                     --  word 'PLAY' on the the centre 4 7-segments.
                     -- After that, advace to 'PLAYING' state
-                    -- Kdyz hra zacne, spusti se TIMER, ten generuje TICK o nejake f, counter bude pocitat uspesne odpaly, po X odpalech se tick zrychly a zvetsi obtiznost hry.
+                    -- after start, the TIMER is activated and generates a TICK at a certain frequency. A counter tracks successful hits, and after a defined number of hits, the tick frequency increases
                     
                     when PLAYING =>
                     -- In this state, advance the ball according to slowed clock signal in the decided direction
