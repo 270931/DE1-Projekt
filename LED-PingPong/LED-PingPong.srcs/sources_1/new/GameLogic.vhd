@@ -20,6 +20,8 @@ end GameLogic;
 
 architecture Behavioral of GameLogic is 
 
+    -- some clock enable will be needed in order to slow down the ball
+
     -- to change the winnig score, modify this value
     constant WIN_SCORE : integer := 10;
 
