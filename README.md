@@ -5,7 +5,7 @@ This project is part of the BPC-DE1 course at the Faculty of Electrical Engineer
 ### Team:
 - Frank Patrik - Programming and overall program structure
 - Hromek Matěj - Timing module and higher difficulty settings 
-- Križan Damián - 
+- Križan Damián - Implementation and documentation
 - Toman Jan -
 
 > [!NOTE]
