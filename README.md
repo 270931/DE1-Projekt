@@ -6,7 +6,7 @@ This project is part of the BPC-DE1 course at the Faculty of Electrical Engineer
 - Frank Patrik - Programming and overall program structure
 - Hromek Matěj - Timing module and higher difficulty settings 
 - Križan Damián - Implementation and documentation
-- Toman Jan -
+- Toman Jan - Score display on 7-segment and buzzer sound feedback module
 
 ## Inputs and outputs of the program
 ### Inputs:
