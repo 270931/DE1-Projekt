@@ -28,22 +28,27 @@ architecture Behavioral of GameLogic is
                ce  : out STD_LOGIC);
     end component;
     
-    component bin2seg is
-        Port ( bin : in STD_LOGIC_VECTOR (4 downto 0);
-               seg : out STD_LOGIC_VECTOR (6 downto 0));
-    end component;
+    component display_driver is
+        Port ( clk   : in STD_LOGIC;
+               rst   : in STD_LOGIC;
+               data  : in STD_LOGIC_VECTOR (39 downto 0);   -- For use of all 8 7-segment displays.
+               seg   : out STD_LOGIC_VECTOR (6 downto 0);
+               anode : out STD_LOGIC_VECTOR (7 downto 0));
+    end component display_driver;
 
     -- to change the winnig score, modify this value
     constant WIN_SCORE : integer := 10;
 
     -- signals needed to run the game
-    signal signal_seg     : STD_LOGIC_VECTOR(6 downto 0);
-    signal signal_anode   : STD_LOGIC_VECTOR(7 downto 0);
+    signal reset_request  : STD_LOGIC;
     signal player_R_score : integer range 0 to WIN_SCORE;
     signal player_L_score : integer range 0 to WIN_SCORE;
     signal ball_position  : STD_LOGIC_VECTOR(15 downto 0);
     signal display_text   : STD_LOGIC;
-    signal display_char   : STD_LOGIC_VECTOR(4 downto 0);
+    signal displayed_text : STD_LOGIC_VECTOR(39 downto 0);
+    
+    -- If '1' ball is moving <- LEFT; if '0' ball is moving -> RIGHT
+    signal ball_direction : STD_LOGIC;
     
     -- possible states of the game
     type state_type is (IDLE, START, PLAYING, END_OF_ROUND, END_OF_GAME);
@@ -52,34 +57,38 @@ architecture Behavioral of GameLogic is
 begin
 
     -- The amount of time that any text should be displayed
+    -- Reset with global 'rst' OR upon request of the game
     clock0 : clk_en
         generic map ( G_MAX => 400_000_000 )    -- 4 seconds should be enough
         port map (
             clk => clk,
-            rst => rst,
+            rst => reset_request,
             ce  => display_text
         );
-    
-    -- Instance of the 'bin2seg' component to draw text
-    display0 : bin2seg
+           
+    -- Instance of the 'display_driver' component for text display
+    display0 : display_driver
         port map (
-            bin => display_char,
-            seg => seg
-           );
-        
+            clk => clk,
+            rst => rst,
+            data => displayed_text,
+            seg => seg,
+            anode => anode
+        );
     
     game: process(clk)
     begin
         
         if rising_edge(clk) then
             
-            -- check if reset signal has been recieved
+            -- check if reset 'rst' signal has been recieved
             if(rst = '1') then
                 player_L_score  <= 0;
                 player_R_score  <= 0;
                 ball_position   <= b"0000_0001_1000_0000";
+                displayed_text  <= (others => '0');
+                reset_request   <= '1';
                 game_state      <= IDLE;
-                signal_seg      <= b"111_1111";
             else
                 
                 case game_state is
@@ -88,8 +97,12 @@ begin
                     -- In this state, the game is waiting for input from any player to transition to START state
                     
                         -- If input is detected from any or all players, the game will transition with the next
-                        --  clock cycle to 'START' state
+                        --  clock cycle to 'START' state                                        DONE
                         if(player_L = '1' OR player_R = '1') then
+                            -- reset_request for counter in the next game state                 DONE
+                            reset_request <= '1';
+                            
+                            -- advance gamestate
                             game_state <= START;
                         else
                             -- Display the score on 7-segment in the format of X00--00X (where X is off, and left 00
@@ -97,27 +110,25 @@ begin
                         end if;
                         
                     when START =>
-                    -- In this state, decide on the direction of the ball movement (somehow), and also display the
-                    --  word 'PLAY' on the the centre 4 7-segments.
-                    -- After that, advace to 'PLAYING' state
+                    -- In this state, decide on the direction of the ball movement (somehow)    DONE
+                    -- Display the word 'PLAY' on the the center 4 7-segments.                  DONE
+                    -- After that, advace to 'PLAYING' state                                    DONE
                     -- Kdyz hra zacne, spusti se TIMER, ten generuje TICK o nejake f, counter bude pocitat uspesne odpaly, po X odpalech se tick zrychly a zvetsi obtiznost hry.
                         
+                        -- Displaying the word 'PLAY' as long as 'display_text' from clock_en with period of 4 sec is HIGH
                         if (display_text = '1') then
-                            -- Letter "P"
-                            anode <= b"1101_1111";
-                            display_char <= b"1_0001";
-                            -- Letter "L"
-                            anode <= b"1110_1111";
-                            display_char <= b"1_0010";
-                            -- Letter "A"
-                            anode <= b"1111_0111";
-                            display_char <= b"1_0011";
-                            -- Letter "Y"
-                            anode <= b"1111_1011";
-                            display_char <= b"1_0100";
+                            --                    _     _     P     L     A     Y     _     _
+                            displayed_text <= b"00000_00000_10001_10010_10011_10100_00000_00000";
                             
+                         -- When 'display_text' falls LOW
                          else
                          
+                            -- Decide on the ball direction
+                            if(player_L_score >= player_R_score) then ball_direction <= '1';
+                            else ball_direction <= '0';
+                            end if;
+                            
+                            -- Advance the game state
                             game_state <= PLAYING;
                          end if;
                     
@@ -127,7 +138,9 @@ begin
                     -- When ball is in the player teritory (for the left player LED15 is on, for right LED0 is on)
                     --  check for the 'player_X' signal within time of one ball advancement.
                     -- If succesful, reverse the direction of ball, flash 'led16_b' and repeate.
-                    -- If failed, advance to the 'END_OF_ROUND' state. 
+                    -- If failed, advance to the 'END_OF_ROUND' state.
+                    
+                    
                     
                     when END_OF_ROUND =>
                     -- In this state, on the basis of the ball position, recalculate the coresponding player score.

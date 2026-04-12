@@ -76,7 +76,9 @@ read_vhdl -library xil_defaultlib {
   {C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd}
   {C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/bin2seg.vhd}
   {C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/clk_en.vhd}
+  {C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/counter.vhd}
   {C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/imports/VHDL/debounce.vhd}
+  {C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/display_driver.vhd}
   {C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/sources_1/new/LED-PingPong_top.vhd}
 }
 OPTRACE "Adding files" END { }
@@ -92,6 +94,8 @@ read_xdc {{C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-P
 set_property used_in_implementation false [get_files {{C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/constrs_1/new/nexys.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental {C:/Users/Patrik Frank/Documents/GitHub/DE1-Projekt/LED-PingPong/LED-PingPong.srcs/utils_1/imports/synth_1/LED_PingPong_top.dcp}
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
