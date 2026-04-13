@@ -86,12 +86,14 @@ begin
                 player_L_score  <= 0;
                 player_R_score  <= 0;
                 ball_position   <= b"0000_0001_1000_0000";
-                displayed_text  <= (others => '0');
+                displayed_text  <= (others => '1');         -- IMPORTANT!! active low (svítí '0')
                 reset_request   <= '1';
                 game_state      <= IDLE;
             else
                 
                 case game_state is
+                    
+                    
                     
                     when IDLE =>
                     -- In this state, the game is waiting for input from any player to transition to START state
@@ -99,9 +101,9 @@ begin
                         -- If input is detected from any or all players, the game will transition with the next
                         --  clock cycle to 'START' state                                        DONE
                         if(player_L = '1' OR player_R = '1') then
+                        
                             -- reset_request for counter in the next game state                 DONE
                             reset_request <= '1';
-                            
                             -- advance gamestate
                             game_state <= START;
                         else
@@ -109,28 +111,35 @@ begin
                             --  is player L score and vice versa)
                         end if;
                         
+                        
+                        
                     when START =>
                     -- In this state, decide on the direction of the ball movement (somehow)    DONE
                     -- Display the word 'PLAY' on the the center 4 7-segments.                  DONE
                     -- After that, advace to 'PLAYING' state                                    DONE
                     -- Kdyz hra zacne, spusti se TIMER, ten generuje TICK o nejake f, counter bude pocitat uspesne odpaly, po X odpalech se tick zrychly a zvetsi obtiznost hry.
                         
-                        -- Displaying the word 'PLAY' as long as 'display_text' from clock_en with period of 4 sec is HIGH
+                        -- Start the clk_en
+                        reset_request <= '0';
+                        
+                                         --   _     _     P     L     A     Y     _     _
+                        displayed_text <= b"11111_11111_10001_10010_10011_10100_11111_11111";
+                        
+                        -- Once 4 secs is up, decide on the direction and continue
                         if (display_text = '1') then
-                            --                    _     _     P     L     A     Y     _     _
-                            displayed_text <= b"00000_00000_10001_10010_10011_10100_00000_00000";
-                            
-                         -- When 'display_text' falls LOW
-                         else
-                         
-                            -- Decide on the ball direction
-                            if(player_L_score >= player_R_score) then ball_direction <= '1';
-                            else ball_direction <= '0';
+                        
+                        -- Decide on the ball direction
+                            if(player_L_score >= player_R_score) then 
+                                ball_direction <= '1';
+                            else 
+                                ball_direction <= '0';
                             end if;
                             
-                            -- Advance the game state
+                            -- Advance the next game state
                             game_state <= PLAYING;
-                         end if;
+                            
+                        end if;
+                    
                     
                     
                     when PLAYING =>

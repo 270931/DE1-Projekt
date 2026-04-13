@@ -32,22 +32,20 @@ architecture Behavioral of display_driver is
 
     component bin2seg is
         port (
-            -- Změněno na 5 bitů podle tvé GameLogic
             bin : in STD_LOGIC_VECTOR (4 downto 0);
             seg : out STD_LOGIC_VECTOR (6 downto 0)
         );
     end component bin2seg;
 
-    -- Vnitřní signály
     signal sig_en    : std_logic;
-    signal sig_bin   : std_logic_vector(4 downto 0); -- Zvětšeno na 5 bitů
-    signal sig_digit : std_logic_vector(2 downto 0); -- Zvětšeno na 3 bity (pro 8 stavů)
+    signal sig_bin   : std_logic_vector(4 downto 0); 
+    signal sig_digit : std_logic_vector(2 downto 0);
 
 begin
 
     clock_0 : clk_en
-        generic map ( G_MAX => 100_000 )    --Refreshing the display with period of 1 ms.
-        port map (                  
+        generic map ( G_MAX => 100_000 )    --Refreshing the display with period of 1 ms. (100_000)
+        port map (                          -- For testbench changed to 100 ns. (10)
             clk => clk,             
             rst => rst,
             ce  => sig_en
