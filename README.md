@@ -44,4 +44,4 @@ The game instance uses the GameLogic component. GameLogic is a finite state mach
 
 ## Weekly status report:
 - WEEK 1:  role assignment, basic program structure and top level design
-
+- WEEK 2:  simulations and their description, states IDLE and START, PLAYING in progress, testing higher difficulty options
