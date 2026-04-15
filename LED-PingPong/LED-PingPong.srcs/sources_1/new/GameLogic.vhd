@@ -47,10 +47,15 @@ architecture Behavioral of GameLogic is
     signal display_text   : STD_LOGIC;
     signal displayed_text : STD_LOGIC_VECTOR(39 downto 0);
     
+    
     -- If '1' ball is moving <- LEFT; if '0' ball is moving -> RIGHT
     signal ball_direction : STD_LOGIC;
+    signal ball_tick      : STD_LOGIC;
+    -- The amount of time between ball_tick (default 100ms)
+    constant tick_time      : integer := 10_000_000;
     
-    -- possible states of the game
+    
+    -- possible states of the game's FST
     type state_type is (IDLE, START, PLAYING, END_OF_ROUND, END_OF_GAME);
     signal game_state : state_type;
 
@@ -65,7 +70,15 @@ begin
             rst => reset_request,
             ce  => display_text
         );
-           
+    
+    -- Clock for 1 ball movement in either direction
+    clock_ball : clk_en
+        generic map (G_MAX => tick_time)       -- 100 ms for 1 ball movement
+        port map (
+            clk => clk,
+            rst => reset_request,
+            ce => ball_tick
+        );
     -- Instance of the 'display_driver' component for text display
     display0 : display_driver
         port map (
@@ -75,6 +88,9 @@ begin
             seg => seg,
             anode => anode
         );
+    
+    -- update the LED playing field according to the ball position
+    led <= ball_position;
     
     game: process(clk)
     begin
@@ -92,8 +108,6 @@ begin
             else
                 
                 case game_state is
-                    
-                    
                     
                     when IDLE =>
                     -- In this state, the game is waiting for input from any player to transition to START state
@@ -149,13 +163,69 @@ begin
                     -- If succesful, reverse the direction of ball, flash 'led16_b' and repeate.
                     -- If failed, advance to the 'END_OF_ROUND' state.
                     
+                        -- Blank the 7-segment display
+                        displayed_text <= (others => '1');
+                        
+                        -- Prepare the reset signal for if player hits
+                        reset_request <= '0';
+                        
+                        -- Wait for the next ball movement tick
+                        if (ball_tick = '1') then
+                            
+                            -- Moving LEFT logic
+                            if(ball_direction = '1') then
+                                -- If ball is in the left player teritory
+                                if(ball_position(15) = '1') then
+                                    -- Then, if player action
+                                    if(player_L = '1') then
+                                        -- SUCCESS, reverse the ball direction and move the ball
+                                        ball_direction <= '0';
+                                        ball_position <= '0' & ball_position(15 downto 1);
+                                        -- reset the timer now
+                                        reset_request <= '1';
+                                    else
+                                        -- MISSED, recaulculate the right player score
+                                        player_R_score <= player_R_score + 1;
+                                        -- Transition to the next game state
+                                        game_state <= END_OF_ROUND;
+                                    end if;
+                                else
+                                    -- Ball is not in left player teritory
+                                    ball_position <= ball_position(14 downto 0) & '0';
+                                end if;
+                                
+                            -- Moving RIGHT
+                            elsif(ball_direction = '0') then
+                                -- If ball is in the right player teritory
+                                if(ball_position(0) = '1') then
+                                    -- Then, if player action
+                                    if(player_R = '1') then
+                                        -- SUCCESSFUL
+                                        ball_direction <= '1';
+                                        ball_position <= ball_position(14 downto 0) & '0';
+                                        reset_request <= '1';
+                                    else
+                                        -- MISSED
+                                        player_L_score <= player_L_score + 1;
+                                        game_state <= END_OF_ROUND;
+                                    end if;
+                                else
+                                    -- Ball is not in the right player teritory
+                                    ball_position <= '0' & ball_position(15 downto 1);
+                                end if;
+                                
+                            -- ball direction if
+                            end if;
+                        --ball movement if
+                        end if;
                     
+                
                     
                     when END_OF_ROUND =>
                     -- In this state, on the basis of the ball position, recalculate the coresponding player score.
                     -- If 'player_X' score if equal to 'WIN_SCORE', advace to the 'END_OF_GAME' state.
                     -- If 'palyer_X' score is less than 'WIN_SCORE' advance to the 'IDLE' state.
-                    
+                        game_state <= IDLE;
                     when END_OF_GAME =>
                     -- In this state, flash repeatedly all playing LEDs and display either 'PLAYERX1' or 'PLAYERX2'
                     --  on the 7-segment (X meaning segment is off).
