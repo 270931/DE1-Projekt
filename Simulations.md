@@ -45,7 +45,8 @@ This simulation verifies the functionality of the `bin2seg` module, which conver
 
 - The output `seg` updates immediately, confirming combinational logic behavior.
 - Each value is correctly mapped to its corresponding 7-segment encoding.
-
+  
+`The segment mapping uses reversed bit ordering, where seg(6) corresponds to segment 'g' and seg(0) to segment 'a'`
 ### Conclusion
 
 The `bin2seg` module correctly implements binary-to-7-segment decoding and is suitable for displaying numerical values.
