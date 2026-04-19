@@ -1,6 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
+use IEEE.NUMERIC_STD.ALL;
 
 entity GameLogic is
     Port ( 
@@ -121,8 +121,7 @@ begin
                             -- advance gamestate
                             game_state <= START;
                         else
-                            -- Display the score on 7-segment in the format of X00--00X (where X is off, and left 00
-                            --  is player L score and vice versa)
+                            displayed_text <= "10010" & "10000" & std_logic_vector(to_unsigned(player_L_score, 5)) & "11111" & "10001" & "10000" & std_logic_vector(to_unsigned(player_R_score, 5)) & "11111";
                         end if;
                         
                         
