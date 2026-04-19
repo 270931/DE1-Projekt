@@ -59,6 +59,12 @@ begin
             -- "Y"
             when b"1_0100" =>
                 seg <= b"001_1001";
+            -- "E"
+            when b"1_0101" =>
+                seg <= b"000_0110";
+            -- "r" capital 'R' is really awkward
+            when b"1_0110" =>
+                seg <= b"010_1111";
                 
             -- "-"
             when b"1_0000" =>
@@ -68,5 +74,5 @@ begin
                 seg <= b"111_1111";  -- All segments off
         end case;
     end process p_7seg_decoder;
-
+    
 end Behavioral;

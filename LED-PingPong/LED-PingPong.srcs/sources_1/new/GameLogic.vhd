@@ -103,6 +103,7 @@ begin
                 player_R_score  <= 0;
                 ball_position   <= b"0000_0001_1000_0000";
                 displayed_text  <= (others => '1');         -- IMPORTANT!! active low (svítí '0')
+                led16_b         <= '0';
                 reset_request   <= '1';
                 game_state      <= IDLE;
             else
@@ -121,6 +122,7 @@ begin
                             -- advance gamestate
                             game_state <= START;
                         else
+                            --                   _         L                    player L score                          _         -         P               player R score                               _
                             displayed_text <= "10010" & "10000" & std_logic_vector(to_unsigned(player_L_score, 5)) & "11111" & "10001" & "10000" & std_logic_vector(to_unsigned(player_R_score, 5)) & "11111";
                         end if;
                         
@@ -159,76 +161,115 @@ begin
                     -- In this state, advance the ball according to slowed clock signal in the decided direction
                     -- When ball is in the player teritory (for the left player LED15 is on, for right LED0 is on)
                     --  check for the 'player_X' signal within time of one ball advancement.
-                    -- If succesful, reverse the direction of ball, flash 'led16_b' and repeate.
-                    -- If failed, advance to the 'END_OF_ROUND' state.
+                    -- If sucessful, reverse the direction of ball  and repeate.
+                    -- If failed, flash 'led16_b' and advance to the 'END_OF_ROUND' state.
                     
                         -- Blank the 7-segment display
                         displayed_text <= (others => '1');
                         
-                        -- Prepare the reset signal for if player hits
+                        -- LED indicator of MISS is off
+                        led16_b <= '1';
+                        
+                        -- Stop reseting the timer
                         reset_request <= '0';
                         
-                        -- Wait for the next ball movement tick
+                        -- INDEPENDENT DETECTION of ball hit
+                        -- If left player button is pressed and ball is in their teritory...
+                        if (player_L = '1' and ball_position(15) = '1') then
+                            -- SUCCESS:
+                            -- ... reverse the ball direction ...
+                            ball_direction <= '0';
+                            -- ... update ball position ...
+                            ball_position <= '0' & ball_position(15 downto 1);
+                            -- ... reset the ball_tick timer.
+                            reset_request <= '1';
+                            
+                        elsif (player_R = '1' and ball_position(0) = '1') then
+                            -- SUCCESS
+                            ball_direction <= '1';
+                            ball_position <= ball_position(14 downto 0) & '0';
+                            reset_request <= '1';
+                        end if;
+
+                        -- BALL MOVEMENT update and MISSED HIT
                         if (ball_tick = '1') then
                             
-                            -- Moving LEFT logic
                             if(ball_direction = '1') then
-                                -- If ball is in the left player teritory
+                                -- Ball movement <- LEFT
                                 if(ball_position(15) = '1') then
-                                    -- Then, if player action
-                                    if(player_L = '1') then
-                                        -- SUCCESS, reverse the ball direction and move the ball
-                                        ball_direction <= '0';
-                                        ball_position <= '0' & ball_position(15 downto 1);
-                                        -- reset the timer now
-                                        reset_request <= '1';
-                                    else
-                                        -- MISSED, recaulculate the right player score
-                                        player_R_score <= player_R_score + 1;
-                                        -- Transition to the next game state
-                                        game_state <= END_OF_ROUND;
-                                    end if;
+                                    -- MISSED
+                                    -- MISSED is when, ball is in player teritory AND timer has expired a.k.a.
+                                    --         ball would have gone past the playing field
+                                    player_R_score <= player_R_score + 1;
+                                    -- Flash led16_b upon MISSED
+                                    led16_b <= '1';
+                                    game_state <= END_OF_ROUND;
                                 else
-                                    -- Ball is not in left player teritory
+                                    -- Ball is not in player teritory
                                     ball_position <= ball_position(14 downto 0) & '0';
                                 end if;
                                 
-                            -- Moving RIGHT
                             elsif(ball_direction = '0') then
-                                -- If ball is in the right player teritory
+                                -- Ball movement -> RIGHT
                                 if(ball_position(0) = '1') then
-                                    -- Then, if player action
-                                    if(player_R = '1') then
-                                        -- SUCCESSFUL
-                                        ball_direction <= '1';
-                                        ball_position <= ball_position(14 downto 0) & '0';
-                                        reset_request <= '1';
-                                    else
-                                        -- MISSED
-                                        player_L_score <= player_L_score + 1;
-                                        game_state <= END_OF_ROUND;
-                                    end if;
+                                    -- MISSED
+                                    player_L_score <= player_L_score + 1;
+                                    -- Flash led16_b upon MISSED
+                                    led16_b <= '1';
+                                    game_state <= END_OF_ROUND;
                                 else
-                                    -- Ball is not in the right player teritory
                                     ball_position <= '0' & ball_position(15 downto 1);
                                 end if;
                                 
-                            -- ball direction if
                             end if;
-                        --ball movement if
                         end if;
                     
                 
                     
                     when END_OF_ROUND =>
-                    -- In this state, on the basis of the ball position, recalculate the coresponding player score.
+                    -- In this state, reset the ball position in case of another round will take place.
                     -- If 'player_X' score if equal to 'WIN_SCORE', advace to the 'END_OF_GAME' state.
                     -- If 'palyer_X' score is less than 'WIN_SCORE' advance to the 'IDLE' state.
+                    
+                    -- Reset the ball position
+                    ball_position   <= b"0000_0001_1000_0000";
+                    
+                    -- Check, if entire game should end
+                    if(player_L_score = WIN_SCORE OR player_R_score = WIN_SCORE) then
+                        game_state <= END_OF_GAME;
+                    else
+                    -- If not, start next round
                         game_state <= IDLE;
+                    end if;
+                    
                     when END_OF_GAME =>
                     -- In this state, flash repeatedly all playing LEDs and display either 'PLAYERX1' or 'PLAYERX2'
                     --  on the 7-segment (X meaning segment is off).
                     -- Remain in this state until manual reset.
+                    
+                    -- Playing LEDs flashing
+                        if (ball_tick = '1') then
+                            -- ball_position(15) is only used as 'memory' of sort, to know what the previous state was
+                            if (ball_position(15) = '1') then
+                            -- If previous state was '1', shut down all the LEDs
+                                ball_position <= (others => '0'); 
+                            else
+                            -- If previous state was '0', light all LEDs up.
+                                ball_position <= (others => '1'); -- Rozsvítit
+                            end if;
+                        end if;
+
+                    -- WINNER DISPLAY
+                        -- Based on whose score is equal to WIN_SCORE
+                        if (player_L_score = WIN_SCORE) then
+                            -- 'PLAYER 1'
+                            --                    P     L     A     Y     E     r     _     1
+                            displayed_text <= b"10001_10010_10011_10100_10101_10110_11111_00001";
+                        else
+                            -- 'PLAYER 2'
+                            --                    P     L     A     Y     E     r     _     2
+                            displayed_text <= b"10001_10010_10011_10100_10101_10110_11111_00010";
+                        end if;
                     
                     when others =>
                     -- If something unexpected happens, go to 'IDLE' state.
