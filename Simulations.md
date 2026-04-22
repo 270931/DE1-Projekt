@@ -87,7 +87,7 @@ The system correctly initializes the game and transitions into active gameplay.
 [Hit](https://tinyurl.com/3bsebdry)
 ### Simulation Waveform
 
-![GameLogic hit simulation](images/GameLogic_simulation_hit.png)
+![GameLogic hit simulation](img/GameLogic_simulation_hit.png)
 
 *Figure 4: Ball movement during PLAYING state with continuous progression across LEDs.*
 
