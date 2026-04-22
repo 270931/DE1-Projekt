@@ -66,16 +66,22 @@ This section presents simulation results of the `GameLogic` module based on obse
 ---
 
 ### 3.1 Start Condition
-[Start](https://tinyurl.com/3bsebdry)
+[Start](https://github.com/270931/DE1-Projekt/blob/main/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd)
+### Simulation waveform
+
+![GameLogic miss simulation](img/GameLogic_simulation_start.png)
+
 ### Behavior Analysis
 
 - The system is initially in the `IDLE` state.
-- A transition to the `PLAYING` state occurs after initialization.
-- The ball is initialized in the center of the LED vector:
-
-  0000000110000000
-  
-- Player input is required for this transition in the current implementation.
+- A player input triggers transition to the `START` state.
+- In the `START` state:
+  - Initial game parameters are prepared
+  - The ball position is initialized:
+    ```
+    0000000110000000
+    ```
+- The system then automatically transitions to the `PLAYING` state.
 
 ### Conclusion
 
@@ -84,7 +90,7 @@ The system correctly initializes the game and transitions into active gameplay.
 ---
 
 ### 3.2 Successful Hit
-[Hit](https://tinyurl.com/3bsebdry)
+[Hit](https://github.com/270931/DE1-Projekt/blob/main/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd)
 ### Simulation Waveform
 
 ![GameLogic hit simulation](img/GameLogic_simulation_hit.png)
@@ -110,7 +116,7 @@ The simulation confirms correct ball movement and proper handling of player inpu
 ---
 
 ### 3.3 Missed Hit
-[Miss](https://tinyurl.com/3bsebdry)
+[Miss](https://github.com/270931/DE1-Projekt/blob/main/LED-PingPong/LED-PingPong.srcs/sources_1/new/GameLogic.vhd)
 ### Simulation Waveform
 
 ![GameLogic miss simulation](img/GameLogic_simulation_miss.png)
