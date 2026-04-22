@@ -52,6 +52,7 @@ architecture Behavioral of GameLogic is
     signal ball_direction : STD_LOGIC;
     signal ball_tick      : STD_LOGIC;
     -- The amount of time between ball_tick (default 100ms)
+    --                                      (simulation 100 ns)
     constant tick_time      : integer := 10_000_000;
     
     
@@ -65,7 +66,7 @@ begin
     -- Reset with global 'rst' OR upon request of the game
     clock0 : clk_en
         generic map ( G_MAX => 400_000_000 )    -- 4 seconds should be enough
-        port map (
+        port map (                              -- 400 ns for simulation
             clk => clk,
             rst => reset_request,
             ce  => display_text
