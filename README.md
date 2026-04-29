@@ -50,4 +50,7 @@ Detailed simulations and waveform results for all components are documented here
 ## Weekly status report:
 - WEEK 1: role assignment, basic program structure and top level design
 - WEEK 2: simulations and their description, states IDLE and START, PLAYING in progress, testing higher difficulty options
-- WEEK 3: decided not to implement harder diffculties, hardware tested positively, 
+- WEEK 3: decided not to implement harder difficulties, hardware tested positively
+
+## License
+This project is licensed under the [MIT License](LICENSE).
