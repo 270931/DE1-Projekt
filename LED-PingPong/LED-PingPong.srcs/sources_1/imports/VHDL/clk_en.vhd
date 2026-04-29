@@ -12,7 +12,7 @@ end clk_en;
 
 architecture Behavioral of clk_en is
 
-    signal sig_cnt : integer range 0 to 10000000 := 0;
+    signal sig_cnt : integer range 0 to 200_000_000 := 0;
     
 begin
 

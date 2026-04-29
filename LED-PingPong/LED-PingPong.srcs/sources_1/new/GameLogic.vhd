@@ -62,6 +62,7 @@ architecture Behavioral of GameLogic is
     
     -- Signály pro dynamickou rychlost
     signal hit_event      : STD_LOGIC := '0';
+    signal speed_reset    : STD_LOGIC;
     signal dynamic_tick   : integer range 0 to 10_000_000;
     
     -- possible states of the game's FST
@@ -94,7 +95,7 @@ begin
     speed_ctrl_i : speed_controller
         port map (
             clk          => clk,
-            rst          => reset_request,
+            rst          => speed_reset,
             hit_detected => hit_event,
             tick_limit   => dynamic_tick
         );
@@ -111,6 +112,8 @@ begin
     
     -- update the LED playing field according to the ball position
     led <= ball_position;
+    -- disable the decimal point
+    dp <= '1';
     
     game: process(clk)
     begin
@@ -125,6 +128,7 @@ begin
                 displayed_text  <= (others => '1');         -- IMPORTANT!! active low (svítí '0')
                 led16_b         <= '0';
                 reset_request   <= '1';
+                speed_reset     <= '1';
                 game_state      <= IDLE;
             else
                 
@@ -156,6 +160,9 @@ begin
                         
                         -- Start the clk_en
                         reset_request <= '0';
+                        
+                        -- Stop reseting the Speed Controller
+                        speed_reset <= '0';
                         
                                          --   _     _     P     L     A     Y     _     _
                         displayed_text <= b"11111_11111_10001_10010_10011_10100_11111_11111";
@@ -256,6 +263,9 @@ begin
                     
                     -- Reset the ball position
                     ball_position   <= b"0000_0001_1000_0000";
+                    
+                    -- Reset the Speed Controller
+                    speed_reset <= '1';
                     
                     -- Check, if entire game should end
                     if(player_L_score = WIN_SCORE OR player_R_score = WIN_SCORE) then

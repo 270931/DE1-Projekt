@@ -7,20 +7,20 @@ entity speed_controller is
         clk          : in  STD_LOGIC;
         rst          : in  STD_LOGIC;
         hit_detected : in  STD_LOGIC; -- Puls, když hráč úspěšně odpálí
-        tick_limit   : out integer range 0 to 10_000_000
+        tick_limit   : out integer range 0 to 25_000_000
     );
 end speed_controller;
 
 architecture Behavioral of speed_controller is
     signal hit_count : integer range 0 to 15 := 0;
-    constant ODPALY_PRO_ZRYCHLENI : integer := 5;
+    constant ODPALY_PRO_ZRYCHLENI : integer := 1;
 begin
     process(clk)
     begin
         if rising_edge(clk) then
             if rst = '1' then
                 hit_count <= 0;
-                tick_limit <= 10_000_000; -- Základní rychlost 100ms
+                tick_limit <= 25_000_000; -- Základní rychlost 150ms
             elsif hit_detected = '1' then
                 if hit_count < (3 * ODPALY_PRO_ZRYCHLENI) - 1 then
                     hit_count <= hit_count + 1;
