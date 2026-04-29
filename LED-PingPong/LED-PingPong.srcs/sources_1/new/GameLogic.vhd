@@ -62,7 +62,7 @@ architecture Behavioral of GameLogic is
     
     -- Signály pro dynamickou rychlost
     signal hit_event      : STD_LOGIC := '0';
-    signal speed_reset    : STD_LOGIC;
+    signal speed_rst    : STD_LOGIC;
     signal dynamic_tick   : integer range 0 to 10_000_000;
     
     -- possible states of the game's FST
@@ -95,7 +95,7 @@ begin
     speed_ctrl_i : speed_controller
         port map (
             clk          => clk,
-            rst          => speed_reset,
+            rst          => speed_rst,
             hit_detected => hit_event,
             tick_limit   => dynamic_tick
         );
@@ -128,9 +128,13 @@ begin
                 displayed_text  <= (others => '1');         -- IMPORTANT!! active low (svítí '0')
                 led16_b         <= '0';
                 reset_request   <= '1';
-                speed_reset     <= '1';
+                speed_rst       <= '1';
+                hit_event       <= '0';
                 game_state      <= IDLE;
             else
+                
+                hit_event <= '0';
+                speed_rst <='0';
                 
                 case game_state is
                     
@@ -160,9 +164,7 @@ begin
                         
                         -- Start the clk_en
                         reset_request <= '0';
-                        
-                        -- Stop reseting the Speed Controller
-                        speed_reset <= '0';
+                 
                         
                                          --   _     _     P     L     A     Y     _     _
                         displayed_text <= b"11111_11111_10001_10010_10011_10100_11111_11111";
@@ -264,8 +266,7 @@ begin
                     -- Reset the ball position
                     ball_position   <= b"0000_0001_1000_0000";
                     
-                    -- Reset the Speed Controller
-                    speed_reset <= '1';
+                    speed_rst <= '1';
                     
                     -- Check, if entire game should end
                     if(player_L_score = WIN_SCORE OR player_R_score = WIN_SCORE) then

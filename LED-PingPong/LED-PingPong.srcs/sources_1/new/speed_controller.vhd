@@ -13,14 +13,14 @@ end speed_controller;
 
 architecture Behavioral of speed_controller is
     signal hit_count : integer range 0 to 15 := 0;
-    constant ODPALY_PRO_ZRYCHLENI : integer := 1;
+    constant ODPALY_PRO_ZRYCHLENI : integer := 2;
 begin
     process(clk)
     begin
         if rising_edge(clk) then
             if rst = '1' then
                 hit_count <= 0;
-                tick_limit <= 25_000_000; -- Základní rychlost 150ms
+                tick_limit <= 15_000_000; -- Základní rychlost 150ms
             elsif hit_detected = '1' then
                 if hit_count < (3 * ODPALY_PRO_ZRYCHLENI) - 1 then
                     hit_count <= hit_count + 1;
