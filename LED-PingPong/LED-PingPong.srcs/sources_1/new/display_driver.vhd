@@ -12,11 +12,11 @@ end display_driver;
 architecture Behavioral of display_driver is
 
     component clk_en is
-        generic ( G_MAX : positive );
         port (
-            clk : in  std_logic;
-            rst : in  std_logic;
-            ce  : out std_logic
+            clk       : in  std_logic;
+            rst       : in  std_logic;
+            sig_limit : in  integer;
+            ce        : out std_logic
         );
     end component clk_en;
 
@@ -43,11 +43,11 @@ architecture Behavioral of display_driver is
 
 begin
 
-    clock_0 : clk_en
-        generic map ( G_MAX => 100_000 )    --Refreshing the display with period of 1 ms. (100_000)
+    clock_0 : clk_en    --Refreshing the display with period of 1 ms. (100_000)
         port map (                          -- For testbench changed to 100 ns. (10)
             clk => clk,             
             rst => rst,
+            sig_limit => 100_000,
             ce  => sig_en
         );
 

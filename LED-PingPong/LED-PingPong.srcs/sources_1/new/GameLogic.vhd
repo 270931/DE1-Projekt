@@ -22,10 +22,10 @@ architecture Behavioral of GameLogic is
 
     -- some clock enable will be needed in order to slow down the ball
     component clk_en is
-        generic ( G_MAX : positive :=5);  -- Default number of clock cycles
-        Port ( clk : in STD_LOGIC;
-               rst : in STD_LOGIC;
-               ce  : out STD_LOGIC);
+        Port ( clk       : in STD_LOGIC;
+               rst       : in STD_LOGIC;
+               sig_limit : in integer; 
+               ce        : out STD_LOGIC);
     end component;
     
     component display_driver is
@@ -35,6 +35,15 @@ architecture Behavioral of GameLogic is
                seg   : out STD_LOGIC_VECTOR (6 downto 0);
                anode : out STD_LOGIC_VECTOR (7 downto 0));
     end component display_driver;
+    
+    component speed_controller is
+        Port (
+            clk          : in  STD_LOGIC;
+            rst          : in  STD_LOGIC;
+            hit_detected : in  STD_LOGIC;
+            tick_limit   : out integer range 0 to 10_000_000
+        );
+    end component;
 
     -- to change the winnig score, modify this value
     constant WIN_SCORE : integer := 10;
@@ -47,14 +56,13 @@ architecture Behavioral of GameLogic is
     signal display_text   : STD_LOGIC;
     signal displayed_text : STD_LOGIC_VECTOR(39 downto 0);
     
-    
     -- If '1' ball is moving <- LEFT; if '0' ball is moving -> RIGHT
     signal ball_direction : STD_LOGIC;
     signal ball_tick      : STD_LOGIC;
-    -- The amount of time between ball_tick (default 100ms)
-    --                                      (simulation 100 ns)
-    constant tick_time      : integer := 10_000_000;
     
+    -- Signály pro dynamickou rychlost
+    signal hit_event      : STD_LOGIC := '0';
+    signal dynamic_tick   : integer range 0 to 10_000_000;
     
     -- possible states of the game's FST
     type state_type is (IDLE, START, PLAYING, END_OF_ROUND, END_OF_GAME);
@@ -65,21 +73,32 @@ begin
     -- The amount of time that any text should be displayed
     -- Reset with global 'rst' OR upon request of the game
     clock0 : clk_en
-        generic map ( G_MAX => 400_000_000 )    -- 4 seconds should be enough
-        port map (                              -- 400 ns for simulation
-            clk => clk,
-            rst => reset_request,
-            ce  => display_text
+        port map (
+            clk       => clk,
+            rst       => reset_request,
+            sig_limit => 200_000_000,    -- 2 seconds should be enough
+            ce        => display_text
         );
     
     -- Clock for 1 ball movement in either direction
+    -- Teď používá dynamický limit místo konstanty tick_time
     clock_ball : clk_en
-        generic map (G_MAX => tick_time)       -- 100 ms for 1 ball movement
         port map (
-            clk => clk,
-            rst => reset_request,
-            ce => ball_tick
+            clk       => clk,
+            rst       => reset_request,
+            sig_limit => dynamic_tick,
+            ce        => ball_tick
         );
+        
+    -- Instance of the speed controler
+    speed_ctrl_i : speed_controller
+        port map (
+            clk          => clk,
+            rst          => reset_request,
+            hit_detected => hit_event,
+            tick_limit   => dynamic_tick
+        );
+        
     -- Instance of the 'display_driver' component for text display
     display0 : display_driver
         port map (
@@ -182,13 +201,16 @@ begin
                             ball_direction <= '0';
                             -- ... update ball position ...
                             ball_position <= '0' & ball_position(15 downto 1);
-                            -- ... reset the ball_tick timer.
+                            hit_event <= '1'; -- +1 hit to the speed
+                            -- reset the timer now
                             reset_request <= '1';
                             
                         elsif (player_R = '1' and ball_position(0) = '1') then
                             -- SUCCESS
                             ball_direction <= '1';
                             ball_position <= ball_position(14 downto 0) & '0';
+                            hit_event <= '1'; -- +1 hit to the speed
+                            -- reset the timer now
                             reset_request <= '1';
                         end if;
 
