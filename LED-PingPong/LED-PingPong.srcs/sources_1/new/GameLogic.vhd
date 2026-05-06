@@ -227,7 +227,7 @@ begin
                         displayed_text <= (others => '1');
                         
                         -- LED indicator of MISS is off
-                        led16_b <= '1';
+                        led16_b <= '0';
                         
                         -- Stop reseting the timer
                         reset_request <= '0';
@@ -342,7 +342,6 @@ begin
                     when others =>
                         game_state <= IDLE;
                 end case;
-            
             
             end if;
         
