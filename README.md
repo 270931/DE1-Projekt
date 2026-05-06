@@ -63,8 +63,9 @@ Detailed simulations and waveform results for all components are documented here
 ## Weekly status report:
 - WEEK 1: role assignment, basic program structure and top level design
 - WEEK 2: simulations and their description, states IDLE and START, PLAYING in progress, testing higher difficulty options
-- WEEK 3: decided not to implement harder difficulties, hardware tested positively
-- WEEK 4: 
+- WEEK 3: decided to implement harder difficulties, hardware tested positively
+- WEEK 4: final touches, testing of quick shot and smash
+- WEEK 5: timing issue resolved by implementation of lookup table, everything works (yay!)
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
