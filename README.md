@@ -42,6 +42,19 @@ The game instance uses the GameLogic component. GameLogic is a finite state mach
 - END_OF_ROUND – Round ends, check if someone missed
 - END_OF_GAME – Player reached winning score, wait for reset
 
+## Resource Utilization
+👉 [View Resource utilization](img/Tab_of_use.png)
+
+The following table shows FPGA resource usage after synthesis (Nexys A7-50T):
+
+| Resource | Utilization | Available | Utilization %|
+|----------|-------------|-----------|--------------|
+| LUT      | 208         | 32600     | 0.64         |
+| FF       | 240         | 65200     | 0.37         |
+| IO       | 37          | 210       | 17.62        |
+| BUFG     | 1           | 32        | 3.13         |
+
+
 ## Simulations                             
 Detailed simulations and waveform results for all components are documented here:
 
