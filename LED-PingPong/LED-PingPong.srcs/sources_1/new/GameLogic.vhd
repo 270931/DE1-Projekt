@@ -50,7 +50,6 @@ architecture Behavioral of GameLogic is
 
     -- signals needed to run the game
     signal reset_request  : STD_LOGIC;
-    signal speed_rst      : STD_LOGIC;
     signal player_R_score : integer range 0 to WIN_SCORE;
     signal player_L_score : integer range 0 to WIN_SCORE;
     signal ball_position  : STD_LOGIC_VECTOR(15 downto 0);
@@ -62,8 +61,7 @@ architecture Behavioral of GameLogic is
     signal ball_tick      : STD_LOGIC;
     
     -- Dynamic speed signals
-    signal hit_event      : STD_LOGIC := '0';
-    signal dynamic_tick   : integer range 0 to 10_000_000;
+    signal dynamic_tick   : integer := 10_000_000;
     signal boost_factor   : integer range 1 to 3 := 1;
     signal effective_tick : integer range 0 to 10_000_000;
     
@@ -93,14 +91,6 @@ begin
             ce        => ball_tick
         );
         
-    -- Instance of the speed controler
-    speed_ctrl_i : speed_controller
-        port map (
-            clk          => clk,
-            rst          => speed_rst,
-            hit_detected => hit_event,
-            tick_limit   => dynamic_tick
-        );
         
     -- Instance of the 'display_driver' component for text display
     display0 : display_driver
@@ -115,7 +105,6 @@ begin
     -- update the LED playing field according to the ball position
     led <= ball_position;
     
-
     -- Effective tick logic, lower tick = higher frequence = ball go brrr
     effective_tick <= dynamic_tick      when boost_factor = 1 else
                       dynamic_tick / 2  when boost_factor = 2 else
@@ -134,15 +123,10 @@ begin
                 displayed_text  <= (others => '1');         -- IMPORTANT!! active low (sviti '0')
                 led16_b         <= '0';
                 reset_request   <= '1';
-                speed_rst       <= '1';                     -- reset speed_controller
-                hit_event       <= '0';
                 boost_factor    <= 1;                       -- DEFAULT ball speed
                 game_state      <= IDLE;
             else
                 
-                -- DEFAULT
-                hit_event <= '0';
-                speed_rst <= '0';
                 
                 case game_state is
                     
@@ -213,7 +197,6 @@ begin
                             -- bounce
                             ball_direction <= '0';
                             ball_position <= '0' & ball_position(15 downto 1);
-                            hit_event <= '1';           
                             reset_request <= '1';        
                         
                         -- RIGHT player hit detection
@@ -229,7 +212,6 @@ begin
                             end if;
                             ball_direction <= '1';
                             ball_position <= ball_position(14 downto 0) & '0';
-                            hit_event <= '1';
                             reset_request <= '1';
                         
                         else
