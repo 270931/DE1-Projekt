@@ -60,6 +60,10 @@ Detailed simulations and waveform results for all components are documented here
 
 👉 [View Simulations](Simulations.md)
 
+## Demo video
+
+👉 [YouTube](https://youtu.be/NGIQuDZSxXg)
+
 ## Weekly status report:
 - WEEK 1: role assignment, basic program structure and top level design
 - WEEK 2: simulations and their description, states IDLE and START, PLAYING in progress, testing higher difficulty options
